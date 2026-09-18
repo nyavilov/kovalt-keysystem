@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KeyUtils implements CommandExecutor {
+public class KeyUtils {
 
     public void registerRecipes() {
         ItemStack lockItem = createLock();
@@ -56,34 +56,35 @@ public class KeyUtils implements CommandExecutor {
         Bukkit.addRecipe(chainRecipe);
     }
 
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("§cКоманда для игроков!");
-            return true;
-        }
-
-        Player player = (Player) sender;
-
-        if (command.getName().equals("getkey")) {
-            if (args.length == 0) {
-                ItemStack key = createKey("EMPTY");
-                player.getInventory().addItem(key);
-                return true;
-            } else {
-                ItemStack key = createKey(args[0]);
-                player.getInventory().addItem(key);
-            }
-            return true;
-        }
-
-        if (command.getName().equals("getlock")) {
-            player.getInventory().addItem(createLock());
-        }
-
-        return true;
-    }
+// данный блок предназначался для команд выдачи ключей/замков/связок
+//    @Override
+//    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+//
+//        if (!(sender instanceof Player)) {
+//            sender.sendMessage("§cКоманда для игроков!");
+//            return true;
+//        }
+//
+//        Player player = (Player) sender;
+//
+//        if (command.getName().equals("getkey")) {
+//            if (args.length == 0) {
+//                ItemStack key = createKey("EMPTY");
+//                player.getInventory().addItem(key);
+//                return true;
+//            } else {
+//                ItemStack key = createKey(args[0]);
+//                player.getInventory().addItem(key);
+//            }
+//            return true;
+//        }
+//
+//        if (command.getName().equals("getlock")) {
+//            player.getInventory().addItem(createLock());
+//        }
+//
+//        return true;
+//    }
 
     // создание ключа
     public ItemStack createKey(String id) {
