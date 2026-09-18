@@ -1,0 +1,14 @@
+name: KovaltKeySystem
+description: $description
+version: '${version}'
+
+main: org.nyadurkadev.kovaltKeySystem.Main
+api-version: '1.21.11'
+load: POSTWORLD
+
+authors: [ nyavilov ]
+commands:
+  getkey:
+    description: пр
+  getlock:
+    description: мяу
