@@ -97,13 +97,32 @@ public class LockLogic implements Listener {
                         // если в руке пачка ключей, то забираем один пустой
                         playerItem.setAmount(playerItem.getAmount() - 1);
 
-                        player.getInventory().addItem(new KeyUtils().createKey(requiredID));
-                        player.sendActionBar("§aКлюч успешно создан");
+                        ItemStack keyItem = playerItem.clone();
+                        keyItem.setAmount(1);
+
+                        ItemMeta meta = keyItem.getItemMeta();
+                        NamespacedKey key = new NamespacedKey(Main.getInstance(), "key_id");
+                        meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, requiredID);
+                        meta.setCustomModelData(91);
+
+                        meta.setDisplayName("§6Дверной ключ");
+                        meta.setLore(Arrays.asList(
+                                "",
+                                "§fНажмите §6«ПКМ» §fпо двери",
+                                "§fдля открытия.",
+                                "",
+                                "§fID ключа: §7" + requiredID,
+                                ""));
+                        keyItem.setItemMeta(meta);
+
+                        player.getInventory().addItem(keyItem);
+                        player.sendActionBar("§aКлюч успешно создан!");
                     } else {
                         // если в руке всего один, то просто превращаем его в рабочий
                         NamespacedKey key = new NamespacedKey(Main.getInstance(), "key_id");
                         ItemMeta meta = playerItem.getItemMeta();
                         meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, requiredID);
+                        meta.setCustomModelData(91);
 
                         meta.setDisplayName("§6Дверной ключ");
                         meta.setLore(Arrays.asList(

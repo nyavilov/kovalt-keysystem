@@ -59,8 +59,6 @@ public final class Main extends JavaPlugin {
 
         logic.load(dataConfig);
 
-        this.getCommand("getkey").setExecutor(new KeyUtils());
-        this.getCommand("getlock").setExecutor(new KeyUtils());
         new KeyUtils().registerRecipes();
         getServer().getPluginManager().registerEvents(new LockLogic(), this);
         getServer().getPluginManager().registerEvents(new ChainLogic(), this);

@@ -93,6 +93,7 @@ public class KeyUtils {
 
         NamespacedKey key = new NamespacedKey(Main.getInstance(), "key_id");
         keyItemMeta.getPersistentDataContainer().set(key, PersistentDataType.STRING, id);
+        keyItemMeta.setCustomModelData(90);
 
         keyItemMeta.setDisplayName("§6Ключ-пустышка");
         List<String> lore = new ArrayList<>();
@@ -120,6 +121,7 @@ public class KeyUtils {
 
         NamespacedKey key = new NamespacedKey(Main.getInstance(), "key_ids");
         keyChainMeta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "");
+        keyChainMeta.setCustomModelData(93);
 
         keyChainMeta.setDisplayName("§6Связка ключей");
         List<String> lore = new ArrayList<>();
@@ -143,6 +145,7 @@ public class KeyUtils {
 
         NamespacedKey key = new NamespacedKey(Main.getInstance(), "key_id");
         lockMeta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "LOCK");
+        lockMeta.setCustomModelData(92);
 
         lockMeta.setDisplayName("§7Дверной замок");
         List<String> lore = new ArrayList<>();
