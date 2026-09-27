@@ -44,6 +44,9 @@ public class LockLogic implements Listener {
         // запрет на поставку tripwire hook (ключа) и chain (связки) на дверь
         if (keyInHandID != null || keyChainIDs != null) {
             event.setUseItemInHand(org.bukkit.event.Event.Result.DENY);
+            if (player.isSneaking() || event.getAction().name().contains("AIR")) {
+                event.setCancelled(true);
+            }
             player.updateInventory();
         }
 
@@ -144,7 +147,6 @@ public class LockLogic implements Listener {
 
                 boolean ifSingleKey = keyInHandID != null && keyInHandID.equals(requiredID);
                 boolean ifKeyInChain = keyChainIDs != null && keyChainIDs.contains(requiredID);
-
 
                 if (ifSingleKey || ifKeyInChain) { // в ручке ключик
                     event.setCancelled(false);
