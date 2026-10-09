@@ -10,6 +10,7 @@ import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,6 +20,23 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class LockLogic implements Listener {
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        ItemStack playerItem = event.getItemInHand();
+        Player player = event.getPlayer();
+
+        String keyInHandID = null;
+        if (!playerItem.hasItemMeta()) return;
+
+        NamespacedKey key = new NamespacedKey(Main.getInstance(), "key_id");
+        keyInHandID = playerItem.getItemMeta()
+                .getPersistentDataContainer().get(key, PersistentDataType.STRING);
+
+        if (keyInHandID != null) {
+            event.setCancelled(true);
+        }
+    }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
